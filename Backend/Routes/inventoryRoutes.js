@@ -4,6 +4,7 @@ const Inventory = require('../models/InventoryModel');
 
 // Get all inventory items
 router.get('/inventory', async (req, res) => {
+  console.log("request")
   try {
     const inventory = await Inventory.find();
     res.json(inventory);

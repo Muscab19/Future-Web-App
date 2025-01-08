@@ -18,7 +18,7 @@ const InventoryPage = () => {
   const itemsPerPage = 15;
 
   useEffect(() => {
-    axios.get('http://localhost:3000/api/inventory')
+    axios.get('http://137.184.58.127:3000/api/api/inventory')
       .then(response => {
         setInventory(response.data);
         setLoading(false);
