@@ -34,7 +34,7 @@ const Dashboard = () => {
           axios.post('http://137.184.58.127:3000/api/itemProfit'),
           axios.post('http://137.184.58.127:3000/api/allCustomers'),
         ]);
-        
+
         // Calculate Service Budget Total
         const serviceBudgetTotal = serviceResponse.data.reduce(
           (total, entry) => total + (entry.serviceFee || 0), // Add service fees safely
