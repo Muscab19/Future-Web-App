@@ -57,7 +57,7 @@ const Home = () => {
     const token = localStorage.getItem('token'); // Retrieve the token if needed
 
     try {
-      await axios.post('http://localhost:3000/api/message', { 
+      await axios.post('http://137.184.58.127:3000/api/message', { 
         name, 
         phone, 
         message 
