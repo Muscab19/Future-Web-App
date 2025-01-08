@@ -51,7 +51,7 @@ const InventoryPage = () => {
     }
 
     if (editItem) {
-      axios.put(`http://localhost:3000/api/inventory/${editItem._id}`, newItemData)
+      axios.put(`http://137.184.58.127:3000/api/inventory/${editItem._id}`, newItemData)
         .then(response => {
           setInventory(inventory.map(item =>
             item._id === editItem._id ? response.data : item
@@ -62,7 +62,7 @@ const InventoryPage = () => {
         })
         .catch(error => console.error(error));
     } else {
-      axios.post('http://localhost:3000/api/newItem', newItemData)
+      axios.post('http://137.184.58.127:3000/api/newItem', newItemData)
         .then(response => {
           console.log(response.data);
           setInventory([...inventory, response.data]);
@@ -85,7 +85,7 @@ const InventoryPage = () => {
   };
 
   const handleDelete = (id) => {
-    axios.delete(`http://localhost:3000/api/inventory/${id}`)
+    axios.delete(`http://137.184.58.127:3000/api/inventory/${id}`)
       .then(() => {
         setInventory(inventory.filter(item => item._id !== id));
       })
