@@ -48,7 +48,7 @@ function SignIn() {
   return (
     <div className="flex items-center justify-center min-h-screen bg-[#F98C2D]">
       <div className="w-full max-w-md p-8 bg-white rounded-lg shadow-lg">
-        <h2 className="text-2xl font-bold text-center text-[#9E1920]">Welcome Back</h2>
+        <h2 className="text-2xl font-bold text-center text-[#9E1920]">Sign In Here</h2>
         <p className="mt-2 text-center text-gray-500">Please sign in to your account</p>
         {error && <div className="text-red-500 text-center">{error}</div>}
         
