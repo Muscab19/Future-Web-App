@@ -30,6 +30,7 @@ router.post('/customers', async (req, res) => {
 
 // @desc Get all customer repair entries
 router.post('/getCustomers', async (req, res) => {
+    console.log("response")
     try {
         const customers = await Customer.find();
         res.status(200).json(customers);
