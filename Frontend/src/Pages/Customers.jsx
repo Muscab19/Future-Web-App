@@ -18,16 +18,10 @@ const Customers = () => {
   useEffect(() => {
     const fetchCustomers = async () => {
       try {
-        // const response = await fetch("http://localhost:3000/api/customers");
-        // const data = await response.json();
         const response = await APIClient({
                     Uri: customer,
                     Method: "POST",
-                    // body: JSON.stringify({ email, password }),
-                    data: {
-                      
-                     
-                  }
+                    data: {}
                 });
         console.log("response", response)
 
@@ -46,7 +40,7 @@ const Customers = () => {
   // Mark as Solved
   const markAsSolved = async (id) => {
     try {
-      const response = await fetch(`http://localhost:3000/api/customers/${id}/solve`, {
+      const response = await fetch(`http://137.184.58.127:3000/api/customers/${id}/solve`, {
         method: "PUT",
       });
       if (response.ok) {
@@ -63,7 +57,7 @@ const Customers = () => {
   // Mark as Unsolved
   const markAsUnsolved = async (id) => {
     try {
-      const response = await fetch(`http://localhost:3000/api/unsolved/${id}`, {
+      const response = await fetch(`http://137.184.58.127:3000/api/unsolved/${id}`, {
         method: "PUT",
       });
       if (response.ok) {
@@ -80,7 +74,7 @@ const Customers = () => {
   // Delete Customer
   const deleteCustomer = async (id) => {
     try {
-      const response = await fetch(`http://localhost:3000/api/customers/${id}`, {
+      const response = await fetch(`http://137.184.58.127:3000/api/customers/${id}`, {
         method: "DELETE",
       });
       if (response.ok) {

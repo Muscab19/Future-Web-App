@@ -31,7 +31,7 @@ const NewCustomer = () => {
   useEffect(() => {
     const fetchInventory = async () => {
       try {
-        const response = await fetch("http://137.184.58.127:3000/api/inventory"); // Replace with your API endpoint
+        const response = await fetch("http://137.184.58.127:3000/api/inventory"); 
         const data = await response.json();
         setInventoryItems(data);
       } catch (error) {
