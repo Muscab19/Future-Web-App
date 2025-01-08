@@ -4,6 +4,7 @@ const router = express.Router();
 
 // Route to get all repairs marked as "Taken" for Service Budget
 router.post('/serviceBudget', async (req, res) => {
+    console.log("request")
     try {
         const takenRepairs = await Customer.find(
             { status: 'Taken' },
