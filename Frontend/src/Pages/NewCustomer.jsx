@@ -34,6 +34,7 @@ const NewCustomer = () => {
         const response = await fetch("http://137.184.58.127:3000/api/inventory"); 
         const data = await response.json();
         setInventoryItems(data);
+        console.log("response", response)
       } catch (error) {
         console.error("Error fetching inventory data:", error);
         toast.error("Failed to fetch inventory data. Please try again.");

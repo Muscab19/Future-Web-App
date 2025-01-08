@@ -4,7 +4,6 @@ const router = express.Router();
 
 // Route to get all item profits
 router.post('/itemProfit', async (req, res) => {
-    console.log("response")
     try {
         const itemProfits = await Customer.find(
             { status: 'Taken' }, 
