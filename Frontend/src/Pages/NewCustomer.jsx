@@ -219,6 +219,16 @@ const NewCustomer = () => {
                 <span className="text-gray-600 flex-1">{item.value}</span>
             </div>
         ))}
+        <div className="border-b border-gray-300 pb-1 mb-2 flex text-sm">
+            <label htmlFor="budget" className="font-semibold text-gray-700 w-20">
+                Budget:
+            </label>
+            <input
+                id="budget"
+                type="text"
+                className="text-gray-600  rounded-md px-2 py-1 flex-1"
+            />
+        </div>
     </div>
     <h2 className="text-center text-white font-semibold text-lg bg-[#A51B2B] rounded-md py-1">
         Tel: +252617053989
