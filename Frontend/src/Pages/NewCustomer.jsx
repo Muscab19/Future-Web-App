@@ -205,7 +205,7 @@ const NewCustomer = () => {
         </form>
       </div>
 
-      <div className="max-w-xs mr-[300px] mx-auto my-6 bg-white w-[300px] p-4 border border-gray-300 rounded-lg shadow-md">
+      {/* <div className="max-w-xs mr-[300px] mx-auto my-6 bg-white w-[300px] p-4 border border-gray-300 rounded-lg shadow-md">
     <img src={logo} alt="Karaama Logo" className="h-8 mx-auto mb-2" />
     <div className="mt-8 mb-8 px-4 border-gray-300">
         {[
@@ -233,7 +233,7 @@ const NewCustomer = () => {
     <h2 className="text-center text-white font-semibold text-lg bg-[#A51B2B] rounded-md py-1">
         Tel: +252617053989
     </h2>
-</div>
+</div> */}
 
 
 
