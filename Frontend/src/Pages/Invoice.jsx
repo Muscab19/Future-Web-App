@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import logo from "../assets/logos.png";
+
 
 const Invoice = () => {
   const [customerData, setCustomerData] = useState({
