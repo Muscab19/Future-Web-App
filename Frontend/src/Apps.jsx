@@ -15,6 +15,7 @@ import SignIn from "./Components/SignIn"
 import SignUp from "./Components/SignUp"
 import Messages from "./Components/messages"
 import InventoryPage from "./Pages/InventoryPage"
+import Invoice from "./Pages/Invoice"
 
 function Apps () {
     return <Routes>
@@ -34,6 +35,7 @@ function Apps () {
         <Route path="/signUp" element={ <SignUp />}></Route>
         <Route path="/messages" element={ <Messages />}></Route>
         <Route path="/inventoryPage" element={ <InventoryPage /> }></Route>
+        <Route path="/invoice" element={ <Invoice />}></Route>
     </Routes>
 }
 
