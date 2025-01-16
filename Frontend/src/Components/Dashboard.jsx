@@ -31,10 +31,10 @@ const Dashboard = () => {
     const fetchTotals = async () => {
       try {
         const [serviceResponse, itemResponse, customerResponse, expenseResponse] = await Promise.all([
-          axios.post('http://137.184.58.127:3000/api/serviceBudget'),
-          axios.post('http://137.184.58.127:3000/api/itemProfit'),
-          axios.post('http://137.184.58.127:3000/api/allCustomers'),
-          axios.get('http://137.184.58.127:3000/api/expenses'), // Assuming an endpoint for expenses
+          axios.post('http://localhost:3000/api/serviceBudget'),
+          axios.post('http://localhost:3000/api/itemProfit'),
+          axios.post('http://localhost:3000/api/allCustomers'),
+          axios.get('http://localhost:3000/api/expenses'), // Assuming an endpoint for expenses
         ]);
 
         // Calculate Service Budget Total

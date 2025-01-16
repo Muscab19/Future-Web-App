@@ -8,7 +8,7 @@ function ExpensesPage() {
 
   // Fetch expenses on initial load
   useEffect(() => {
-    axios.get('http://localhost:3000/api/expanses')
+    axios.get('http://localhost:3000/api/expenses')
       .then((response) => {
         setExpenses(response.data);
       })

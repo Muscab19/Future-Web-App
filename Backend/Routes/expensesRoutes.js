@@ -4,7 +4,7 @@ const Expense = require('../models/expenses');
 const router = express.Router();
 
 // Route to get all expenses
-router.get('/expanses', async (req, res) => {
+router.get('/expenses', async (req, res) => {
   try {
     const expenses = await Expense.find(); // Get all expenses from the database
     res.json(expenses); // Send expenses as a response
