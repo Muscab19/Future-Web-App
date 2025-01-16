@@ -34,26 +34,23 @@ const Dashboard = () => {
           axios.post('http://137.184.58.127:3000/api/serviceBudget'),
           axios.post('http://137.184.58.127:3000/api/itemProfit'),
           axios.post('http://137.184.58.127:3000/api/allCustomers'),
-          axios.post('http://137.184.58.127:3000/api/expenses'), // Assuming an endpoint for expenses
+          axios.get('http://137.184.58.127:3000/api/expenses'), // Assuming an endpoint for expenses
         ]);
 
         // Calculate Service Budget Total
-        const serviceBudgetTotal = serviceResponse.data.reduce(
-          (total, entry) => total + (entry.serviceFee || 0), // Add service fees safely
-          0
-        );
+        const serviceBudgetTotal = Array.isArray(serviceResponse.data) && serviceResponse.data.length > 0
+          ? serviceResponse.data.reduce((total, entry) => total + (entry.serviceFee || 0), 0)
+          : 0;
 
         // Calculate Item Profit Total (if necessary)
-        const itemProfitTotal = itemResponse.data.reduce(
-          (total, entry) => total + (entry.profitAmount || 0), // Add profit amounts safely
-          0
-        );
+        const itemProfitTotal = Array.isArray(itemResponse.data) && itemResponse.data.length > 0
+          ? itemResponse.data.reduce((total, entry) => total + (entry.profitAmount || 0), 0)
+          : 0;
 
         // Calculate Total Expenses
-        const totalExpenses = expenseResponse.data.reduce(
-          (total, entry) => total + (entry.expenseAmount || 0), // Add expense amounts safely
-          0
-        );
+        const totalExpenses = Array.isArray(expenseResponse.data) && expenseResponse.data.length > 0
+          ? expenseResponse.data.reduce((total, entry) => total + (entry.expenseAmount || 0), 0)
+          : 0;
 
         // Set state for totals
         setServiceBudgetTotal(serviceBudgetTotal);
