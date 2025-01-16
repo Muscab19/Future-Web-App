@@ -1,4 +1,3 @@
-// User - auth
 export const SingIn = "/api/signin";
 export const signUp="/api/signup";
 export const customer="/api/getCustomers";
@@ -10,7 +9,6 @@ export const itemCostPage="/api/itemCost";
 export const  AllCustomersPage="/api/allCustomers"
 export const ServiceBudgetPage="/api/serviceBudget";
 export const ItemProfitPage="/api/itemProfit";
-// export const InvenPage="/api/inventory";
+export const expensesPage="/api/expanses";
 export const TechnicianPerformancePage="/api/serviceBudget";
 export const messagesPage="/api/messages";
-

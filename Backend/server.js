@@ -26,6 +26,7 @@ const itemCostRoutes = require('./Routes/ItemCostRoutes')
 const userRoutes = require('./Routes/userRoutes');
 const messagesRoutes = require('./Routes/messagesRouter');
 const inventoryRoutes = require('./Routes/inventoryRoutes');
+const expansesRoutes = require('./Routes/expensesRoutes')
 
 app.use("/api", NewCustomerRoutes);
 app.use("/api", customersRoutes)
@@ -39,6 +40,7 @@ app.use("/api", itemCostRoutes)
 app.use('/api', userRoutes);
 app.use('/api', messagesRoutes);
 app.use("/api", inventoryRoutes)
+app.use("/api", expansesRoutes)
 
 
 // MongoDB connection

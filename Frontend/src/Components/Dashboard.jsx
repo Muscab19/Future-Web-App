@@ -9,7 +9,8 @@ import { toast } from 'react-toastify';
 const Dashboard = () => {
   const [serviceBudgetTotal, setServiceBudgetTotal] = useState(0);
   const [itemProfitTotal, setItemProfitTotal] = useState(0);
-  const [totalRevenue, setTotalRevenue] = useState(0);
+  const [totalRevenue, setTotalRevenue] = useState(0); // You may still keep totalRevenue for calculations
+  const [totalExpenses, setTotalExpenses] = useState(0); // New state for Total Expenses
   const [totalCustomers, setTotalCustomers] = useState(0);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
@@ -25,14 +26,15 @@ const Dashboard = () => {
       }
     }
   }, [navigate]);
-  
+
   useEffect(() => {
     const fetchTotals = async () => {
       try {
-        const [serviceResponse, itemResponse, customerResponse] = await Promise.all([
+        const [serviceResponse, itemResponse, customerResponse, expenseResponse] = await Promise.all([
           axios.post('http://137.184.58.127:3000/api/serviceBudget'),
           axios.post('http://137.184.58.127:3000/api/itemProfit'),
           axios.post('http://137.184.58.127:3000/api/allCustomers'),
+          axios.post('http://137.184.58.127:3000/api/expenses'), // Assuming an endpoint for expenses
         ]);
 
         // Calculate Service Budget Total
@@ -40,21 +42,27 @@ const Dashboard = () => {
           (total, entry) => total + (entry.serviceFee || 0), // Add service fees safely
           0
         );
-  
+
         // Calculate Item Profit Total (if necessary)
         const itemProfitTotal = itemResponse.data.reduce(
           (total, entry) => total + (entry.profitAmount || 0), // Add profit amounts safely
           0
         );
-  
+
+        // Calculate Total Expenses
+        const totalExpenses = expenseResponse.data.reduce(
+          (total, entry) => total + (entry.expenseAmount || 0), // Add expense amounts safely
+          0
+        );
+
         // Set state for totals
         setServiceBudgetTotal(serviceBudgetTotal);
         setItemProfitTotal(itemProfitTotal);
         setTotalCustomers(customerResponse.data.length);
-  
+        setTotalExpenses(totalExpenses);
+
         // Calculate Total Revenue (if applicable)
         setTotalRevenue(serviceBudgetTotal + itemProfitTotal);
-  
       } catch (error) {
         console.error("Error fetching totals:", error);
         toast.error("Failed to load dashboard data.");
@@ -62,10 +70,12 @@ const Dashboard = () => {
         setLoading(false);
       }
     };
-  
-    fetchTotals();
-  }, []);  
 
+    fetchTotals();
+  }, []);
+
+  // Calculate Net Income (Revenue - Expenses)
+  const netIncome = serviceBudgetTotal + itemProfitTotal - totalExpenses;
 
   const handleLogout = () => {
     localStorage.removeItem('token');
@@ -104,7 +114,7 @@ const Dashboard = () => {
         <aside className="w-64 bg-white shadow-md p-6">
           <nav>
             <ul className="space-y-4">
-              {[
+              {[ 
                 { href: '/newCustomer', label: 'Add Customer', icon: <FaUser /> },
                 { href: '/customers', label: 'Customers', icon: <FaClipboardList /> },
                 { href: '/solvedRepairs', label: 'Solved Repairs', icon: <FaClipboardList /> },
@@ -112,6 +122,7 @@ const Dashboard = () => {
                 { href: '/takenRepairs', label: 'Taken Repairs', icon: <FaClipboardList /> },
                 { href: '/itemCost', label: 'Item Cost', icon: <FaClipboardList /> },
                 { href: '/inventoryPage', label: 'Inventory Page', icon: <FaClipboardList /> },
+                { href: '/expensesPage', label: 'Expenses Page', icon: <FaClipboardList /> },
                 { href: '/technicianPerformance', label: 'Technician Performance', icon: <FaChartBar /> },
               ].map((item, index) => (
                 <li key={index}>
@@ -158,11 +169,12 @@ const Dashboard = () => {
                   </div>
                 </div>
               </NavLink>
+              {/* Display Net Income instead of Total Revenue */}
               <div className="bg-white p-4 rounded-lg shadow-md flex items-center hover:bg-gray-50 transition duration-200">
                 <FaDollarSign className="text-[#A51B2B] text-4xl bg-gray-400 rounded-full mr-3" />
                 <div>
-                  <h2 className="text-xl font-bold text-center">Total Revenue</h2>
-                  <p className="text-gray-700 mt-2 text-2xl text-center">${totalRevenue.toFixed(2)}</p>
+                  <h2 className="text-xl font-bold text-center">Net Income</h2>
+                  <p className="text-gray-700 mt-2 text-2xl text-center">${netIncome.toFixed(2)}</p>
                 </div>
               </div>
             </div>
